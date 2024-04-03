@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="RepositoryTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2024-03-18T10:47:30" hostname="Anastasias-Air" time="0.002">
+  <properties/>
+  <testcase name="testFindUpdate()" classname="RepositoryTest" time="0.001"/>
+  <testcase name="testAddDelete()" classname="RepositoryTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,46 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <util:properties id="jdbcProps" location="classpath:/agentie.config"/>
+    <bean id="angajat" class="Domain.Angajat"/>
+    <bean id="bilet" class="Domain.Bilet"/>
+    <bean id="client" class="Domain.Client"/>
+    <bean id="zbor" class="Domain.Zbor"/>
+    <bean id="repoAngajat" class="Repository.AngajatRepository">
+        <constructor-arg ref="jdbcProps"/>
+    </bean>
+    <bean id="repoZbor" class="Repository.ZborRepository">
+        <constructor-arg ref="jdbcProps"/>
+    </bean>
+    <bean id="repoClient" class="Repository.ClientRepository">
+        <constructor-arg ref="jdbcProps"/>
+    </bean>
+    <bean id="repoBilet" class="Repository.BiletRepository">
+        <constructor-arg ref="jdbcProps"/>
+    </bean>
+    <bean id="serviceClient" class="Service.ClientService">
+        <constructor-arg ref="repoClient"/>
+    </bean>
+    <bean id="serviceAngajat" class="Service.AngajatService">
+        <constructor-arg ref="repoAngajat"/>
+    </bean>
+    <bean id="serviceZbor" class="Service.ZborService">
+        <constructor-arg ref="repoZbor"/>
+    </bean>
+    <bean id="serviceBilet" class="Service.BiletService">
+        <constructor-arg ref="repoBilet"/>
+    </bean>
+    <bean id="ui" class="UI.Controller">
+        <constructor-arg index="0" ref="serviceAngajat"/>
+        <constructor-arg index="1" ref="serviceClient"/>
+        <constructor-arg index="2" ref="serviceZbor"/>
+        <constructor-arg index="3" ref="serviceBilet"/>
+    </bean>
+<!--    <bean id="taskService" class="tasks.service.TaskService">-->
+<!--        <constructor-arg ref="repo2"/>-->
+<!--        <constructor-arg ref="obsTaskRunner"/>-->
+<!--    </bean>-->
+</beans>
